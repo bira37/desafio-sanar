@@ -1,0 +1,61 @@
+Caso de Uso 1: Mario assinou o SanarFlix Mensal.
+
+Acao: Realizar uma requisicao POST para "http://127.0.0.1:5000/api/users/", passando no corpo da requisicao o JSON com as informacoes do usuario mostrado abaixo.
+{'cliente': {'nome': 'Mario', 'email': 'mariosantos@gmail.com'}, 'produto': {'tipo': 'plano', 'plano_id': 'plan_mens'}, 'cartao': {'nome_cartao': 'joao', 'numero': '4584441896453869', 'expiracao_mes': 12, 'expiracao_ano': 19, 'cvv': '591'}}
+
+Resultado: Ela retorna as seguintes informacoes mostradas abaixo.
+{'nome': 'Mario', 'mundi_subscription_id': 'sub_gP6V8p2F4s3Ampkr', 'id': 1, 'plano': 'Plano SanarFlix Mensal', 'primeiros 6 digitos do cartao': '458444', 'ultimos 4 digitos do cartao': '3869'}
+
+-----------------------------------------------------------------------------------------------
+Caso de Uso 2: Juliana assinou o SanarFlix com periodo de teste de 7 dias
+
+Acao: Realizar uma requisicao POST para "http://127.0.0.1:5000/api/users/", passando no corpo da requisicao o JSON com as informacoes do usuario mostrado abaixo.
+{'cliente': {'nome': 'Juliana', 'email': 'juliana123@gmail.com'}, 'produto': {'tipo': 'plano', 'plano_id': 'plan_mens_teste'}, 'cartao': {'nome_cartao': 'juliana', 'numero': '4584441896453869', 'expiracao_mes': 12, 'expiracao_ano': 19, 'cvv': '591'}}
+
+Resultado: Ela retorna as seguintes informacoes mostradas abaixo.
+{'nome': 'Juliana', 'mundi_subscription_id': 'sub_aRjp9JYhxTOwX2oN', 'id': 2, 'plano': 'Plano SanarFlix Mensal com 7 Dias de Teste', 'primeiros 6 digitos do cartao': '458444', 'ultimos 4 digitos do cartao': '3869'}
+
+-----------------------------------------------------------------------------------------------
+Caso de Uso 3: Pedro assinou o SanarFlix Trimestral
+
+Acao: Realizar uma requisicao POST para "http://127.0.0.1:5000/api/users/", passando no corpo da requisicao o JSON com as informacoes do usuario mostrado abaixo.
+{'cliente': {'nome': 'Pedro', 'email': 'pedro147@gmail.com'}, 'produto': {'tipo': 'plano', 'plano_id': 'plan_trim'}, 'cartao': {'nome_cartao': 'pedro', 'numero': '4584441896453869', 'expiracao_mes': 12, 'expiracao_ano': 19, 'cvv': '591'}}
+
+Resultado: Ela retorna as seguintes informacoes mostradas abaixo.
+{'nome': 'Pedro', 'mundi_subscription_id': 'sub_XnLAOLdT56F3qBeY', 'id': 3, 'plano': 'Plano SanarFlix Trimestral', 'primeiros 6 digitos do cartao': '458444', 'ultimos 4 digitos do cartao': '3869'}
+
+-----------------------------------------------------------------------------------------------
+Caso de Uso 4: Marcos deseja mudar o cartao de sua assinatura
+Para simular essa acao, iremos criar uma assinatura para Marcos utilizando os seguintes dados que serao passados no corpo da requisicao, similar aos casos anteriores:
+{'cliente': {'nome': 'Marcos', 'email': 'marcos369@gmail.com'}, 'produto': {'tipo': 'plano', 'plano_id': 'plan_mens'}, 'cartao': {'nome_cartao': 'marcos', 'numero': '4584441896453869', 'expiracao_mes': 12, 'expiracao_ano': 19, 'cvv': '591'}}
+
+Recebemos como retorno as seguintes informacoes:
+{'nome': 'Marcos', 'mundi_subscription_id': 'sub_pXzPlozoSYfeRkNE', 'id': 4, 'plano': 'Plano SanarFlix Mensal', 'primeiros 6 digitos do cartao': '458444', 'ultimos 4 digitos do cartao': '3869'}
+
+Acao de alteracao: Realizar uma requisicao PUT para "http://127.0.0.1:5000/api/users/4", passando no corpo da requisicao o JSON com as informacoes do usuario mostrado abaixo.
+{'cartao': {'nome_cartao': 'marcos', 'numero': '4532912167490007', 'expiracao_mes': 1, 'expiracao_ano': 28, 'cvv': '123'}}
+
+Resultado: Ela retorna as seguintes informacoes mostradas abaixo.
+{'nome': 'Marcos', 'id': 4, 'plano': 'Plano SanarFlix Mensal', 'mundi_subscription_id': 'sub_pXzPlozoSYfeRkNE', 'primeiros 6 digitos do cartao': '453291', 'ultimos 4 digitos do cartao': '0007'}
+
+-----------------------------------------------------------------------------------------------
+Caso de Uso 5: Luiz assinou o SanarFlix Promocional com o Livro Yellowbook
+
+Acao: Realizar uma requisicao POST para "http://127.0.0.1:5000/api/users/", passando no corpo da requisicao o JSON com as informacoes do usuario mostrado abaixo.
+{'cliente': {'nome': 'Luiz', 'email': 'luiz258@gmail.com'}, 'produto': {'tipo': 'plano', 'plano_id': 'plan_promo_yellowbook'}, 'cartao': {'nome_cartao': 'luiz', 'numero': '4584441896453869', 'expiracao_mes': 12, 'expiracao_ano': 19, 'cvv': '591'}}
+
+Resultado: Ela retorna as seguintes informacoes mostradas abaixo.
+{'nome': 'Luiz', 'mundi_subscription_id': 'sub_q6ebvlZxSqcG50yz', 'id': 5, 'plano': 'Plano SanarFlix Promocional Com Livro Yellowbook', 'primeiros 6 digitos do cartao': '458444', 'ultimos 4 digitos do cartao': '3869'}
+
+-----------------------------------------------------------------------------------------------
+Caso de Uso 6: Ricardo deseja cancelar a sua assinatura
+Para simular essa acao, iremos criar uma assinatura para Ricardo utilizando os seguintes dados que serao passados no corpo da requisicao, similar aos casos anteriores:
+{'cliente': {'nome': 'Ricardo', 'email': 'ricardo_000@gmail.com'}, 'produto': {'tipo': 'plano', 'plano_id': 'plan_trim'}, 'cartao': {'nome_cartao': 'ricardo', 'numero': '4584441896453869', 'expiracao_mes': 12, 'expiracao_ano': 19, 'cvv': '591'}}
+
+Recebemos como retorno as seguintes informacoes:
+{'nome': 'Ricardo', 'mundi_subscription_id': 'sub_GgEolqnSVt0NkmMX', 'id': 6, 'plano': 'Plano SanarFlix Trimestral', 'primeiros 6 digitos do cartao': '458444', 'ultimos 4 digitos do cartao': '3869'}
+
+Acao de cancelamento: Realizar uma requisicao DELETE para "http://127.0.0.1:5000/api/users/6", sem informacoes adicionais do corpo da requisicao.
+Resultado: Ela retorna as seguintes informacoes mostradas abaixo.
+{'id': 6, 'nome': 'Ricardo', 'plano': 'Plano SanarFlix Trimestral', 'mundi_subscription_id': 'sub_GgEolqnSVt0NkmMX', 'status': 'canceled'}
+

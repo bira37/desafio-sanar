@@ -1,0 +1,32 @@
+from flask_restful import Resource
+from flask import request
+from flask import abort
+from mundiapi.mundiapi_client import MundiapiClient
+from mundiapi.models import *
+from mundiapi.controllers import *
+from mundiapi.exceptions.error_exception import *
+from .User import User
+from .Plan import Plan
+from app import db
+
+class SanarAPI(Resource):
+
+  def get(self, user_id=None):
+    try:
+      assert user_id is not None, "id do usuario nao especificado"
+      
+      #Recupera usuario na base de dados
+      user = User.query.filter_by(id = user_id).first()
+      
+      assert user is not None, "usuario nao existe"
+      
+      #Retorna as informacoes do usuario presentes na base
+      return {"id": user.id, "nome": user.name, "plano": user.plan_name, "mundi_customer_id": user.mundi_customer_id, "mundi_subscription_id": user.mundi_subscription_id}, 200
+      
+    except ErrorException as ex:
+      return {"message": ex.message + ". Errors: " + ex.errors}, 400
+      abort(400)
+    except AssertionError as ex:
+      return {"message": "Assertion Error: " + str(ex)}, 400
+    except Exception as ex:
+      return {"message": "Exception: " + str(ex)}, 400

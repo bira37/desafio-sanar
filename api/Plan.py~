@@ -1,0 +1,11 @@
+from app import db
+ 
+class Plan(db.Model):
+    name = db.Column(db.String(255), primary_key=True)
+    mundi_id = db.Column(db.String(255))
+    
+    def __init__(self, mundi_id=""):
+      self.mundi_id = mundi_id
+      
+    def __repr__(self):
+        return "<Plan Name: {}>".format(self.name)
